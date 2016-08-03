@@ -1,19 +1,3 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Gist
- @mrjj
- Watch 4
-  Unstar 8
- Fork 1 DvdGiessen/nginx-rtmp-docker
- Code  Issues 0  Pull requests 0  Wiki  Pulse  Graphs
-Branch: master Find file Copy pathnginx-rtmp-docker/Dockerfile
-8d7db66  on Jun 27
-@DvdGiessen DvdGiessen Whitespace fix.
-1 contributor
-RawBlameHistory     107 lines (95 sloc)  4 KB
 # Dockerfile for a simple Nginx stream replicator
 
 # Software versions
@@ -56,6 +40,7 @@ RUN cd /tmp/build/nginx/${NGINX_VERSION} && \
         --http-log-path=/var/log/nginx/access.log \
         --http-client-body-temp-path=/tmp/nginx-client-body \
         --without-http_charset_module \
+        --without-http_gzip_module \
         --without-http_ssi_module \
         --without-http_userid_module \
         --without-http_access_module \
@@ -63,10 +48,8 @@ RUN cd /tmp/build/nginx/${NGINX_VERSION} && \
         --without-http_geo_module \
         --without-http_map_module \
         --without-http_split_clients_module \
-        --without-http_referer_module \
         --without-http_rewrite_module \
         --without-http_fastcgi_module \
-        --without-http_uwsgi_module \
         --without-http_scgi_module \
         --without-http_memcached_module \
         --without-http_limit_conn_module \
@@ -78,7 +61,6 @@ RUN cd /tmp/build/nginx/${NGINX_VERSION} && \
         --without-http_upstream_least_conn_module \
         --without-http_upstream_keepalive_module \
         --without-http_upstream_zone_module \
-        --without-http-cache \
         --without-mail_pop3_module \
         --without-mail_imap_module \
         --without-mail_smtp_module \
@@ -117,5 +99,3 @@ RUN chmod 444 /etc/nginx/nginx.conf && \
 USER ${USER}
 EXPOSE 1935
 CMD ["nginx", "-g", "daemon off;"]
-Contact GitHub API Training Shop Blog About
-© 2016 GitHub, Inc. Terms Privacy Security Status Help
